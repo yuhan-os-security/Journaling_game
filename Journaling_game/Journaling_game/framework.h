@@ -13,3 +13,10 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+
+#include <vector>
+
+#include "../../VCPP_final/201807042 final/OBJECT.h"
+#include "../../VCPP_final/201807042 final/TEXTBUTTON.h"
+#include "../../VCPP_final/201807042 final/BUTTON.h"
+#include "../../VCPP_final/201807042 final/LABEL.h"

@@ -139,12 +139,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\VCPP_final\201807042 final\BUTTON.h" />
+    <ClInclude Include="..\..\VCPP_final\201807042 final\LABEL.h" />
+    <ClInclude Include="..\..\VCPP_final\201807042 final\OBJECT.h" />
+    <ClInclude Include="..\..\VCPP_final\201807042 final\TEXTBUTTON.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Journaling_game.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\VCPP_final\201807042 final\BUTTON.cpp" />
+    <ClCompile Include="..\..\VCPP_final\201807042 final\LABEL.cpp" />
+    <ClCompile Include="..\..\VCPP_final\201807042 final\OBJECT.cpp" />
+    <ClCompile Include="..\..\VCPP_final\201807042 final\TEXTBUTTON.cpp" />
+    <ClCompile Include="functions.cpp" />
     <ClCompile Include="Journaling_game.cpp" />
   </ItemGroup>
   <ItemGroup>

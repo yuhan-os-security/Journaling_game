@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="모듈">
+      <UniqueIdentifier>{5696d8e5-b783-491c-a616-c0d1e24fafa0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -27,9 +30,36 @@
     <ClInclude Include="Journaling_game.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\VCPP_final\201807042 final\BUTTON.h">
+      <Filter>모듈</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\VCPP_final\201807042 final\LABEL.h">
+      <Filter>모듈</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\VCPP_final\201807042 final\TEXTBUTTON.h">
+      <Filter>모듈</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\VCPP_final\201807042 final\OBJECT.h">
+      <Filter>모듈</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Journaling_game.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VCPP_final\201807042 final\BUTTON.cpp">
+      <Filter>모듈</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VCPP_final\201807042 final\LABEL.cpp">
+      <Filter>모듈</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VCPP_final\201807042 final\TEXTBUTTON.cpp">
+      <Filter>모듈</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VCPP_final\201807042 final\OBJECT.cpp">
+      <Filter>모듈</Filter>
+    </ClCompile>
+    <ClCompile Include="functions.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
