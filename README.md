@@ -3,9 +3,9 @@
 이 프로젝트는 동아리 레퍼런스의 OS, 보안 팀의 작품입니다.<br>
 후킹 API 중 저널링 API 를 활용하여 후킹이 무엇인지 그중 저널링은 어떤 것 인지 직_간접적으로 체험할 수 있게 해주는 간단한 2인용 게임입니다.<br>
 
-서브모듈이 적용 되어 있으므로 처음 클론을 만든 경우 해당 명령을 실행해야 동작한다.
-git submodule init
-git submodule update
+서브모듈이 적용 되어 있으므로 처음 클론을 만든 경우 해당 명령을 실행해야 동작한다.<br>
+git submodule init<br>
+git submodule update<br>
 <hr>
 <h2>플레이 방법</h2>
 
