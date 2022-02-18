@@ -1,5 +1,5 @@
 ﻿// Journaling_game.cpp : 애플리케이션에 대한 진입점을 정의합니다.
-//
+//코딩하면서 생각나는대로 필터 없이 주석에 적어놓았음. 조금 어수선할 수 있음
 
 #include "framework.h"
 #include "Journaling_game.h"
@@ -127,16 +127,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	// 현재 장면에 대한 정보이다
 	// 해당 변수로 화면에 표시할 컴포넌트들을 조절한다.
-	static int Page = page_main;
+	static int Page = page_main; //이 부분 직접 변경하면서 해보기. 원래는 page_main이었다.
 
 	// 모든 라벨에 대한 모음이다.
 	// 서브모듈을 활용한 객체이다.
-	static vector<LABEL* > labels;
+	static vector<LABEL*> labels;
 
 	// 페이지 버튼에 대한 모음이다.
 	// 페이지를 바꾸는 버튼에 대한 변수이다.
 	// 서브모듈을 활용한 객체이다.
 	static vector<TEXTBUTTON*> page_buttons;
+	
+	// 에딧(텍스트 상자)에 대한 모음이다. push_back 적용이 안되서 임시방편.
+	HWND edit1;
+	HWND edit2;
 	
 
 	// 점프할 페이지 번호
@@ -147,44 +151,57 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 
-		// 0번 페이지에서 사용될 요소
+		// 1번 페이지에서 사용될 요소
 		// 게임 초기화면
-		labels.push_back(new LABEL(300, 200, L"누구나 꿈꿔본 암호 뚫기 게임", 30));		// 0
-		labels.push_back(new LABEL(580, 240, L"Feat.후킹", 20));						// 1
+		labels.push_back(new LABEL(300, 200, L"누구나 꿈꿔본 암호 뚫기 게임", 30));		// 라벨0
+		labels.push_back(new LABEL(580, 240, L"Feat.후킹", 20));						// 라벨1
 		// 시작 버튼 등록
-		page_buttons.push_back(new TEXTBUTTON(L"게임시작", 0, 450, 300, 150, 50, 20));	// 2
-		page_buttons[0]->setAction(NextPage);		// 0
+		page_buttons.push_back(new TEXTBUTTON(L"게임시작", 0, 450, 300, 150, 50, 20));	// 버튼0
+		page_buttons[0]->setAction(NextPage);		// 0 
+													// setaction=액션리스너라고 보면 됨.
 		// 도움말 버튼 등록
-		page_buttons.push_back(new TEXTBUTTON(L"도움말", 0, 450, 370, 150, 50, 20));	// 3
-		page_buttons[1]->setAction(HelpPage);		// 1
+		page_buttons.push_back(new TEXTBUTTON(L"도움말", 0, 450, 370, 150, 50, 20));	// 버튼1
+		page_buttons[1]->setAction(HelpPage);		// 이 부분이 실행이 안 되는 것 같다.
 		
 		// 1번 버튼의 동작을 중지 시킨다.
-		page_buttons[1]->setEnabled(false);
+		//page_buttons[1]->setEnabled(false);
 		// 1번 버튼을 보이게 설정한다.
 		page_buttons[1]->setVisible(true);
 
 
-		// 1번 페이지에서 사용될 요소
+		// ------------------2번 페이지에서 사용될 요소----------------------
 		// 이름 입력 페이지
-		
+		labels.push_back(new LABEL(280, 200, L"PLAYER 1", 30));		// 라벨2
+		labels.push_back(new LABEL(280, 270, L"PLAYER 2", 30));		// 라벨3
 
-		// 2번 페이지에서 사용될 요소
+		page_buttons.push_back(new TEXTBUTTON(L"시작", 0, 450, 370, 150, 50, 20)); // 버튼2
+		page_buttons[2]->setAction(NextPage); // NextPage -> 페이지 번호를 반환하는 함수임.
+		page_buttons[2]->setVisible(true);			// 2번 버튼을 보이게 설정한다.
+
+		edit1 = CreateWindow(L"EDIT1", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 200, 250, 40, hWnd, NULL, NULL, NULL);
+		edit2 = CreateWindow(L"EDIT2", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 270, 250, 40, hWnd, NULL, NULL, NULL);
+		// 에딧은 몇 개가 필요하게 될 지 모르겠어서 배열 없이 따로 만들어봤다. 솔직히 인수 하나하나의 의미는 잘 모르겠고
+		// 시간이 너무 늦어서 급한대로 인터넷에서 에딧 생성 코드를 찾아서 이 코드에 맞게 고쳐봤다
+		// 어느 정도는 알겠는데.. 빠삭하게 알려면 맘먹고 찾아봐야 할 듯. (에딧=텍스트 상자)
+
+
+		// ------------------3번 페이지에서 사용될 요소-----------------------
 		// 계정 등록 페이지
 
 
-		// 3번 페이지에서 사용될 요소
+		// 4번 페이지에서 사용될 요소
 		// 로그인 페이지
 
 
-		// 4번 페이지에서 사용될 요소
+		// 5번 페이지에서 사용될 요소
 		// 공격자 로그인 페이지
 
 
-		// 5번 페이지에서 사용될 요소
+		// 6번 페이지에서 사용될 요소
 		// 결과 페이지
 		
 
-		// 6번 페이지에서 사용될 요소
+		// 7번 페이지에서 사용될 요소
 		// 도움말 페이지
 		break;
 
@@ -215,28 +232,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			{
 			case page_main:
 				// 게임 초기화면
+				//아래는 게임 초기화면을 구성한 코드로 보임.
 				labels[0]->paint(hdc);
 				labels[1]->paint(hdc);
 				page_buttons[0]->paint(hdc);
 				page_buttons[1]->paint(hdc);
 				break;
-			case page_name:
+			case page_name:	
 				// 이름 입력 페이지
+				// 마찬가지로 이 아래에 이름 입력 페이지를 구성해보겠음.
+				labels[2]->paint(hdc);
+				labels[3]->paint(hdc);
+				page_buttons[2]->paint(hdc);	// 아까 구성한 요소들을 차례대로 페이지에 삽입해 줌.
 				break;
 			case page_signin:
 				// 계정 등록 페이지
+				//DestroyWindow(edit1);
+				//DestroyWindow(edit2);
+				MessageBox(hWnd, _T("계정 등록페이지"), _T("미완성"), MB_OK);
 				break;
 			case page_login:
 				// 로그인 페이지
+				MessageBox(hWnd, _T("로그인페이지"), _T("미완성"), MB_OK);
 				break;
 			case page_attack_login:
 				// 공격자 로그인 페이지
+				MessageBox(hWnd, _T("공격자 로그인페이지"), _T("미완성"), MB_OK);
 				break;
 			case page_result:
 				// 결과 페이지
+				MessageBox(hWnd, _T("결과페이지"), _T("미완성"), MB_OK);
 				break;
 			case page_help:
 				// 도움말 페이지
+				MessageBox(hWnd, _T("도움말페이지"), _T("미완성"), MB_OK);
 				break;
 			default:
 				break;
