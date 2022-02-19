@@ -3,13 +3,13 @@
 #include "resource.h"
 #include <windows.h>
 
-#define page_main	1
-#define page_name	2
-#define page_signin	3
-#define page_login	4
-#define page_attack_login	5
-#define page_result	6
-#define page_help	7
+#define page_main	1			// 메인페이지 번호
+#define page_name	2			// 이름 입력 페이지 번호	
+#define page_signin	3			// 방어자 등록아이디 등록 페이지 번호
+#define page_login	4			// 방어자 로그인 페이지 번호
+#define page_attack_login	5	// 공격자 로그인 페이지 번호
+#define page_result	6			// 결과 페이지 번호
+#define page_help	7			// 도움말 페이지 번호
 #define max_page 6
 
 

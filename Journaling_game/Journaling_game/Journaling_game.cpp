@@ -215,7 +215,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			t = i->press_Action(hWnd, jump, Page, lParam);
 			// t 변수의 값이 0이 아니라면 페이지 번호를 변경한다.
 			if (t != 0)
+			{
 				Page = t;
+				break;
+			}
 		}
 		// jump를 0으로 초기화 한 후 화면 리다이랙션
 		jump = 0;

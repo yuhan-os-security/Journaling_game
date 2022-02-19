@@ -3,12 +3,15 @@
 
 int NextPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	return ((int)wParam + 1) % (max_page + 1);
+	WCHAR str[20];
+	wsprintf(str,L"NextPage : %d", wParam);
+	MessageBox(hWnd, str, L"½ÇÇà", MB_OK);
+	return ((int)wParam) % (max_page) + 1;
 }
 
 int JumpPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	return message;
+	return (int)message;
 }
 
 int HelpPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
