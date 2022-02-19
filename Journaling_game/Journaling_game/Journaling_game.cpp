@@ -147,6 +147,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	// 변수의 값을 0 이외의 값으로 설정 한 후 버튼이 눌리면 해당 페이지로 이동됨
 	static int jump = 0;
 
+
 	switch (message)
 	{
 	case WM_CREATE:
@@ -213,10 +214,45 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			// 눌린 버튼을 추적하여 t 변수에 임시 저장한다.
 			t = i->press_Action(hWnd, jump, Page, lParam);
+
 			// t 변수의 값이 0이 아니라면 페이지 번호를 변경한다.
+			// 페이지의 이동이 발생하였는지 확인하여 버튼의 상태를 설정한다.
 			if (t != 0)
 			{
+				// Page 값을 변경한다.
 				Page = t;
+
+				// Page값 에 따라 버튼의 출력 및 동작 여부를 설정함
+				switch (Page)
+				{
+				case page_main:
+					// 게임 초기화면
+					break;
+
+				case page_name:
+					// 이름 입력 페이지
+					break;
+
+				case page_signin:
+					// 계정 등록 페이지
+					break;
+
+				case page_login:
+					// 로그인 페이지
+					break;
+
+				case page_attack_login:
+					// 공격자 로그인 페이지
+					break;
+
+				case page_result:
+					// 결과 페이지
+					break;
+
+				case page_help:
+					// 도움말 페이지
+					break;
+				}
 				break;
 			}
 		}
@@ -225,6 +261,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		InvalidateRect(hWnd, NULL, true);
 	}
 		break;
+
 	case WM_PAINT:
 		{
 			PAINTSTRUCT ps;
