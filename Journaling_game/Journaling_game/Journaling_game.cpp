@@ -220,7 +220,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				break;
 			}
 		}
-		// jump를 0으로 초기화 한 후 화면 리다이랙션
+		// jump를 0으로 초기화 한 후 화면 리다이랙션    
 		jump = 0;
 		InvalidateRect(hWnd, NULL, true);
 	}
