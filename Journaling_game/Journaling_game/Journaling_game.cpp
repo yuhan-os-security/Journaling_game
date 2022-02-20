@@ -242,42 +242,55 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				// Page 값을 변경한다.
 				Page = t;
 
+				// 모든 버튼을 비활성화 하는 코드를 삽입
+
+
 				// Page값 에 따라 버튼의 출력 및 동작 여부를 설정함
+				// 페이지가 변경될 때 가장 먼저 실행되는 코드들
+				// 버튼의 활성화를 할 때 쓰인다.
 				switch (Page)
 				{
 				case page_main:
 					// 게임 초기화면
+					page_buttons[0]->setEnabled(true);		// 게임시작 버튼 활성화
+					page_buttons[0]->setVisible(true);		// 게임시작 버튼 활성화
+					page_buttons[1]->setEnabled(true);		// 도움말 버튼 활성화
+					page_buttons[1]->setVisible(true);		// 도움말 버튼 활성화
 					break;
 
 				case page_name:
 					// 이름 입력 페이지
-					page_buttons[0]->setEnabled(false);		// 게임시작 버튼 비활성화
-					page_buttons[1]->setEnabled(false);		// 도움말 버튼 비활성화
+					
 					break;
 
 				case page_signin:
 					// 계정 등록 페이지
-					page_buttons[2]->setEnabled(false);		// 시작 버튼 비활성화
+					page_buttons[2]->setEnabled(true);		// 시작 버튼 활성화
+					page_buttons[2]->setVisible(true);		// 시작 버튼 활성화
 					break;
 
 				case page_login:
 					// 로그인 페이지
-					page_buttons[3]->setEnabled(false);		// 등록 버튼 비활성화
+					page_buttons[3]->setEnabled(true);		// 등록 버튼 활성화
+					page_buttons[3]->setVisible(true);		// 등록 버튼 활성화
 					break;
 
 				case page_attack_login:
 					// 공격자 로그인 페이지
-					page_buttons[4]->setEnabled(false);		// 사용자 로그인 버튼 비활성화
+					page_buttons[4]->setEnabled(true);		// 사용자 로그인 버튼 활성화
+					page_buttons[4]->setVisible(true);		// 사용자 로그인 버튼 활성화
 					break;
 
 				case page_result:
 					// 결과 페이지
-					page_buttons[5]->setEnabled(false);		// 공격자 로그인 버튼 비활성화
+					page_buttons[5]->setEnabled(true);		// 공격자 로그인 버튼 활성화
+					page_buttons[5]->setVisible(true);		// 공격자 로그인 버튼 활성화
 					break;
 
 				case page_help:
 					// 도움말 페이지
 					page_buttons[6]->setEnabled(true);
+					page_buttons[6]->setVisible(true);		
 					break;
 				}
 				break;
