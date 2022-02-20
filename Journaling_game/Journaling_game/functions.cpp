@@ -6,7 +6,8 @@ int NextPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	WCHAR str[20];
 	wsprintf(str,L"NextPage : %d", wParam);
 	MessageBox(hWnd, str, L"실행", MB_OK);
-	return ((int)wParam) % (max_page) + 1;
+	int x = (int)wParam;
+	return (x) % (max_page) + 1;
 }
 
 int JumpPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -20,7 +21,7 @@ int HelpPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static int Page = -1;
 
 	// 도움말 보기를 누른 경우
-	if (help_menu)
+	if (!help_menu)
 	{
 		// 플래그를 true로 만든 후 
 		help_menu = true;

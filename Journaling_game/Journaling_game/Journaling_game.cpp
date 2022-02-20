@@ -176,7 +176,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		labels.push_back(new LABEL(280, 270, L"PLAYER 2", 30));		// 라벨3
 
 		page_buttons.push_back(new TEXTBUTTON(L"시작", 0, 450, 370, 150, 50, 20)); // 버튼2
-		page_buttons[2]->setAction(NextPage); // NextPage -> 페이지 번호를 반환하는 함수임.
+		page_buttons[2]->setAction(NextPage);		// NextPage -> 페이지 번호를 반환하는 함수임.
 		page_buttons[2]->setVisible(true);			// 2번 버튼을 보이게 설정한다.
 
 		edit1 = CreateWindow(L"EDIT1", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 200, 250, 40, hWnd, NULL, NULL, NULL);
@@ -188,22 +188,42 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		// ------------------3번 페이지에서 사용될 요소-----------------------
 		// 계정 등록 페이지
+		page_buttons.push_back(new TEXTBUTTON(L"등록", 0, 450, 370, 150, 50, 20)); // 버튼3
+		page_buttons[3]->setAction(NextPage);		// NextPage -> 페이지 번호를 반환하는 함수임.
+		page_buttons[3]->setVisible(true);			// 3번 버튼을 보이게 설정한다.
 
 
-		// 4번 페이지에서 사용될 요소
+		// ------------------4번 페이지에서 사용될 요소-----------------------
 		// 로그인 페이지
+		labels.push_back(new LABEL(280, 200, L"사용자 ID", 30));		// 라벨4
+		labels.push_back(new LABEL(280, 270, L"사용자 PW", 30));		// 라벨5
+		
+
+		page_buttons.push_back(new TEXTBUTTON(L"사용자 로그인", 0, 450, 370, 150, 50, 20)); // 버튼4
+		page_buttons[4]->setAction(NextPage);		// NextPage -> 페이지 번호를 반환하는 함수임.
+		page_buttons[4]->setVisible(true);			// 4번 버튼을 보이게 설정한다.
 
 
-		// 5번 페이지에서 사용될 요소
+		// ------------------5번 페이지에서 사용될 요소-----------------------
 		// 공격자 로그인 페이지
+		labels.push_back(new LABEL(280, 200, L"공격자 ID", 30));		// 라벨6
+		labels.push_back(new LABEL(280, 270, L"공격자 PW", 30));		// 라벨7
+
+		page_buttons.push_back(new TEXTBUTTON(L"공격자 로그인", 0, 450, 370, 150, 50, 20)); // 버튼5
+		page_buttons[5]->setAction(NextPage);		// NextPage -> 페이지 번호를 반환하는 함수임.
+		page_buttons[5]->setVisible(true);			// 5번 버튼을 보이게 설정한다.
 
 
-		// 6번 페이지에서 사용될 요소
+		// ------------------6번 페이지에서 사용될 요소-----------------------
 		// 결과 페이지
 		
 
-		// 7번 페이지에서 사용될 요소
+		// ------------------7번 페이지에서 사용될 요소-----------------------
 		// 도움말 페이지
+		page_buttons.push_back(new TEXTBUTTON(L"뒤로가기", 0, 450, 170, 150, 50, 20)); // 버튼7
+		page_buttons[6]->setAction(HelpPage);		// HelpPage -> 페이지 번호를 반환하는 함수임.
+		page_buttons[6]->setVisible(true);	
+		page_buttons[6]->setEnabled(false);		// 7번 버튼을 보이게 설정한다.
 		break;
 
 	case WM_LBUTTONDOWN : 
@@ -231,26 +251,33 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 				case page_name:
 					// 이름 입력 페이지
+					page_buttons[0]->setEnabled(false);		// 게임시작 버튼 비활성화
+					page_buttons[1]->setEnabled(false);		// 도움말 버튼 비활성화
 					break;
 
 				case page_signin:
 					// 계정 등록 페이지
+					page_buttons[2]->setEnabled(false);		// 시작 버튼 비활성화
 					break;
 
 				case page_login:
 					// 로그인 페이지
+					page_buttons[3]->setEnabled(false);		// 등록 버튼 비활성화
 					break;
 
 				case page_attack_login:
 					// 공격자 로그인 페이지
+					page_buttons[4]->setEnabled(false);		// 사용자 로그인 버튼 비활성화
 					break;
 
 				case page_result:
 					// 결과 페이지
+					page_buttons[5]->setEnabled(false);		// 공격자 로그인 버튼 비활성화
 					break;
 
 				case page_help:
 					// 도움말 페이지
+					page_buttons[6]->setEnabled(true);
 					break;
 				}
 				break;
@@ -290,14 +317,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				//DestroyWindow(edit1);
 				//DestroyWindow(edit2);
 				MessageBox(hWnd, _T("계정 등록페이지"), _T("미완성"), MB_OK);
+				page_buttons[3]->paint(hdc);
 				break;
 			case page_login:
 				// 로그인 페이지
+				labels[4]->paint(hdc);
+				labels[5]->paint(hdc);
 				MessageBox(hWnd, _T("로그인페이지"), _T("미완성"), MB_OK);
+				page_buttons[4]->paint(hdc);
 				break;
 			case page_attack_login:
 				// 공격자 로그인 페이지
+				labels[6]->paint(hdc);
+				labels[7]->paint(hdc);
 				MessageBox(hWnd, _T("공격자 로그인페이지"), _T("미완성"), MB_OK);
+				page_buttons[5]->paint(hdc);
 				break;
 			case page_result:
 				// 결과 페이지
@@ -306,9 +340,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			case page_help:
 				// 도움말 페이지
 				MessageBox(hWnd, _T("도움말페이지"), _T("미완성"), MB_OK);
+				page_buttons[6]->paint(hdc);
 				break;
 			default:
 				break;
+			}
+
+			if (Page != 7)
+			{
+				page_buttons[6]->setEnabled(false);
 			}
 
 			EndPaint(hWnd, &ps);
