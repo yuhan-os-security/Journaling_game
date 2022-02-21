@@ -10,7 +10,9 @@
 #define page_attack_login	5	// 공격자 로그인 페이지 번호
 #define page_result	6			// 결과 페이지 번호
 #define page_help	7			// 도움말 페이지 번호
-#define max_page 6
+#define max_page page_result	// 페이지의 마지막 번호
+
+#define WM_page_change	WM_USER + 1
 
 
 /*!
@@ -27,8 +29,8 @@ int NextPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 * @brief		해당 페이지 번호를 반환하는 함수
 * @detail		이동할 페이지 번호를 받아와 반환한다.
 * @param		HWND	hWnd		사용하지 않음
-* @param		UINT	message		사용하지 않음
-* @param		WPARAM	wParam		이동할 페이지 번호
+* @param		UINT	message		이동할 페이지 번호
+* @param		WPARAM	wParam		사용하지 않음
 * @param		LPARAM	lParam		사용하지 않음
 */
 int JumpPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -39,7 +41,17 @@ int JumpPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 * @detail		도움말 버튼을 다시 누른 경우 기존 페이지로 이동한다.
 * @param		HWND	hWnd		사용하지 않음
 * @param		UINT	message		사용하지 않음
-* @param		WPARAM	wParam		사용하지 않음
+* @param		WPARAM	wParam		현재 페이지 번호
 * @param		LPARAM	lParam		사용하지 않음
 */
 int HelpPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+
+/*!
+* @brief		현재 페이지를 초기화하는 함수
+* @detail		현재 페이지 번호를 반환한다.
+* @param		HWND	hWnd		사용하지 않음
+* @param		UINT	message		사용하지 않음
+* @param		WPARAM	wParam		현재 페이지 번호
+* @param		LPARAM	lParam		사용하지 않음
+*/
+int resetPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);

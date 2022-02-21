@@ -42,6 +42,9 @@
     <ClInclude Include="..\..\VCPP_final\201807042 final\OBJECT.h">
       <Filter>모듈</Filter>
     </ClInclude>
+    <ClInclude Include="Journal.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Journaling_game.cpp">
@@ -60,6 +63,9 @@
       <Filter>모듈</Filter>
     </ClCompile>
     <ClCompile Include="functions.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Journal.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

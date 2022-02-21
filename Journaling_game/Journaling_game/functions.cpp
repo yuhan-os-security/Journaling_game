@@ -4,10 +4,16 @@
 int NextPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	WCHAR str[20];
-	wsprintf(str,L"NextPage : %d", wParam);
-	MessageBox(hWnd, str, L"실행", MB_OK);
-	int x = (int)wParam;
-	return (x) % (max_page) + 1;
+	int x;
+	x = (int)wParam;
+
+	// 확인 메시지 출력
+	//wsprintf(str,L"NextPage : %d", wParam);
+	//MessageBox(hWnd, str, L"실행", MB_OK);
+	
+	// 다음 페이지 번호를 계산한다.
+	// 0번은 페이지 변동 없음이므로 다음과 같은 형태의 연산이 올바른 연산이다.
+	return (x % (max_page) + 1);
 }
 
 int JumpPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -42,6 +48,11 @@ int HelpPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		return wParam;
 	}
 	
+}
+
+int resetPage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	return (int)wParam;
 }
 
 

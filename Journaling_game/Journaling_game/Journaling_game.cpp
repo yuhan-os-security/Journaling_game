@@ -151,19 +151,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_CREATE:
-
-		
-
 		// 1번 페이지에서 사용될 요소
 		// 게임 초기화면
 		labels.push_back(new LABEL(300, 200, L"누구나 꿈꿔본 암호 뚫기 게임", 30));		// 라벨0
 		labels.push_back(new LABEL(580, 240, L"Feat.후킹", 20));						// 라벨1
+
 		// 시작 버튼 등록
-		page_buttons.push_back(new TEXTBUTTON(L"게임시작", 0, 450, 300, 150, 50, 20));	// 버튼0
-		page_buttons[0]->setAction(NextPage);		// 0 
-													// setaction=액션리스너라고 보면 됨.
+		page_buttons.push_back(new TEXTBUTTON(L"게임시작", 0, 430, 300, 150, 50, 20));	// 버튼0
+		page_buttons[0]->setAction(NextPage);
+
 		// 도움말 버튼 등록
-		page_buttons.push_back(new TEXTBUTTON(L"도움말", 0, 450, 370, 150, 50, 20));	// 버튼1
+		page_buttons.push_back(new TEXTBUTTON(L"도움말", 0, 430, 370, 150, 50, 20));	// 버튼1
 		page_buttons[1]->setAction(HelpPage);		
 		
 		// 1번 버튼의 동작을 중지 시킨다.
@@ -173,13 +171,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		// ------------------2번 페이지에서 사용될 요소----------------------
 		// 이름 입력 페이지
-		labels.push_back(new LABEL(280, 200, L"PLAYER 1", 30));		// 라벨2
-		labels.push_back(new LABEL(280, 270, L"PLAYER 2", 30));		// 라벨3
+		labels.push_back(new LABEL(410, 150, L"플레이어 등록", 30));	// 라벨2
+		labels.push_back(new LABEL(280, 200, L"PLAYER 1", 30));			// 라벨3
+		labels.push_back(new LABEL(280, 250, L"PLAYER 2", 30));			// 라벨4
 
-		page_buttons.push_back(new TEXTBUTTON(L"시작", 0, 450, 370, 150, 50, 20)); // 버튼2
-		page_buttons[2]->setAction(NextPage);		// NextPage -> 페이지 번호를 반환하는 함수임.
-		page_buttons[2]->setVisible(false);			// 2번 버튼을 보이게 설정한다.
-		page_buttons[2]->setEnabled(false);			// 2번 버튼의 활성화 설정한다
+		page_buttons.push_back(new TEXTBUTTON(L"시작", 0, 430, 320, 150, 50, 20));		// 버튼2
+		page_buttons[2]->setAction(NextPage);
+		page_buttons[2]->setVisible(false);
+		page_buttons[2]->setEnabled(false);
 
 		//edit1 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 200, 250, 40, hWnd, (HMENU)101, NULL, NULL);
 		//edit2 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 270, 250, 40, hWnd, (HMENU)102, NULL, NULL);
@@ -190,55 +189,84 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		// ------------------3번 페이지에서 사용될 요소-----------------------
 		// 계정 등록 페이지
-		page_buttons.push_back(new TEXTBUTTON(L"등록", 0, 450, 370, 150, 50, 20)); // 버튼3
-		page_buttons[3]->setAction(NextPage);		// NextPage -> 페이지 번호를 반환하는 함수임.
-		page_buttons[3]->setVisible(false);			// 3번 버튼을 보이게 설정한다.
-		page_buttons[3]->setEnabled(false);			// 3번 버튼의 활성화 설정한다
+		labels.push_back(new LABEL(420, 150, L"계정 생성", 30));		// 라벨5
+		labels.push_back(new LABEL(280, 200, L"사용자 ID", 30));		// 라벨6
+		labels.push_back(new LABEL(280, 250, L"사용자 PW", 30));		// 라벨7
+
+		labels.push_back(new LABEL(50, 50, L"PLAYER 1", 20));			// 라벨8
+		labels.push_back(new LABEL(180, 50, L"ROUND N", 20));			// 라벨9
+
+		page_buttons.push_back(new TEXTBUTTON(L"초기화", 0, 350, 320, 100, 50, 20));	// 버튼3
+		page_buttons.push_back(new TEXTBUTTON(L"회원가입", 0, 470, 320, 100, 50, 20));	// 버튼4
+
+		page_buttons[3]->setAction(resetPage);
+		page_buttons[3]->setVisible(false);
+		page_buttons[3]->setEnabled(false);
+
+		page_buttons[4]->setAction(NextPage);
+		page_buttons[4]->setVisible(false);
+		page_buttons[4]->setEnabled(false);
 
 
 		// ------------------4번 페이지에서 사용될 요소-----------------------
 		// 로그인 페이지
-		labels.push_back(new LABEL(280, 200, L"사용자 ID", 30));		// 라벨4
-		labels.push_back(new LABEL(280, 270, L"사용자 PW", 30));		// 라벨5
+		labels.push_back(new LABEL(460, 150, L"로그인", 30));			// 라벨10
+		labels.push_back(new LABEL(320, 200, L"ID : ", 30));			// 라벨11
+		labels.push_back(new LABEL(320, 250, L"PW : ", 30));			// 라벨12
 		
+		labels.push_back(new LABEL(50, 50, L"PLAYER 1", 20));			// 라벨13
+		labels.push_back(new LABEL(180, 50, L"ROUND N", 20));			// 라벨14
 
-		page_buttons.push_back(new TEXTBUTTON(L"사용자 로그인", 0, 450, 370, 150, 50, 20)); // 버튼4
-		page_buttons[4]->setAction(NextPage);		// NextPage -> 페이지 번호를 반환하는 함수임.
-		page_buttons[4]->setVisible(false);			// 4번 버튼을 보이게 설정한다.
-		page_buttons[4]->setEnabled(false);			// 4번 버튼의 활성화 설정한다
+		page_buttons.push_back(new TEXTBUTTON(L"로그인", 0, 600, 200, 100, 90, 30)); // 버튼5
+		page_buttons[5]->setAction(NextPage);
+		page_buttons[5]->setVisible(false);
+		page_buttons[5]->setEnabled(false);
 
+		page_buttons.push_back(new TEXTBUTTON(L"<-", 0, 600, 50, 50, 50, 30)); // 버튼6
+		page_buttons[6]->setAction(JumpPage);		
+		page_buttons[6]->setVisible(false);			
+		page_buttons[6]->setEnabled(false);			
 
 		// ------------------5번 페이지에서 사용될 요소-----------------------
 		// 공격자 로그인 페이지
-		labels.push_back(new LABEL(280, 200, L"공격자 ID", 30));		// 라벨6
-		labels.push_back(new LABEL(280, 270, L"공격자 PW", 30));		// 라벨7
+		labels.push_back(new LABEL(170, 150, L"로그인", 30));		// 라벨15
+		labels.push_back(new LABEL(80, 200, L"ID : ", 30));			// 라벨16
+		labels.push_back(new LABEL(80, 250, L"PW : ", 30));			// 라벨17
 
-		page_buttons.push_back(new TEXTBUTTON(L"공격자 로그인", 0, 450, 370, 150, 50, 20)); // 버튼5
-		page_buttons[5]->setAction(NextPage);		// NextPage -> 페이지 번호를 반환하는 함수임.
-		page_buttons[5]->setVisible(false);			// 5번 버튼을 보이게 설정한다.
-		page_buttons[5]->setEnabled(false);			// 5번 버튼의 활성화 설정한다
+		labels.push_back(new LABEL(50, 50, L"PLAYER 2", 20));		// 라벨18
+		labels.push_back(new LABEL(180, 50, L"ROUND N", 20));		// 라벨19
+
+		page_buttons.push_back(new TEXTBUTTON(L"로그인", 0, 360, 200, 100, 90, 30)); // 버튼7
+		page_buttons[7]->setAction(NextPage);
+		page_buttons[7]->setVisible(false);
+		page_buttons[7]->setEnabled(false);
 
 
 		// ------------------6번 페이지에서 사용될 요소-----------------------
 		// 결과 페이지
-		labels.push_back(new LABEL(280, 200, L"점수", 30));		// 라벨8
-		labels.push_back(new LABEL(340, 200, L":", 30));		// 라벨9
-		labels.push_back(new LABEL(400, 200, L"점수", 30));		// 라벨10
-		labels.push_back(new LABEL(220, 270, L"승", 30));		// 라벨11
-		labels.push_back(new LABEL(460, 270, L"패", 30));		// 라벨12
-		labels.push_back(new LABEL(220, 200, L"플레이어1", 30));		// 라벨6
-		labels.push_back(new LABEL(460, 270, L"플레이어2", 30));		// 라벨7
-		page_buttons.push_back(new TEXTBUTTON(L"처음으로", 0, 340, 370, 150, 50, 20)); // 버튼6
-		page_buttons[6]->setAction(JumpPage);		// JumpPage -> 페이지 번호로 이동하는 함수.
-		page_buttons[6]->setVisible(false);			// 6번 버튼을 보이게 설정한다.
-		page_buttons[6]->setEnabled(false);			// 6번 버튼의 활성화 설정한다
+		labels.push_back(new LABEL(410, 200, L"N", 50));			// 라벨20
+		labels.push_back(new LABEL(480, 200, L":", 50));			// 라벨21
+		labels.push_back(new LABEL(550, 200, L"N", 50));			// 라벨22
+		labels.push_back(new LABEL(310, 250, L"플레이어1", 30));	// 라벨23
+		labels.push_back(new LABEL(550, 250, L"플레이어2", 30));	// 라벨24
+		labels.push_back(new LABEL(350, 300, L"승", 30));			// 라벨25
+		labels.push_back(new LABEL(590, 300, L"패", 30));			// 라벨26
+		
+
+		page_buttons.push_back(new TEXTBUTTON(L"처음으로", 0, 410, 350, 150, 50, 20)); // 버튼8
+		page_buttons[8]->setAction(NextPage);		
+		page_buttons[8]->setVisible(false);
+		page_buttons[8]->setEnabled(false);
 
 		// ------------------7번 페이지에서 사용될 요소-----------------------
 		// 도움말 페이지
-		page_buttons.push_back(new TEXTBUTTON(L"뒤로가기", 0, 450, 170, 150, 50, 20)); // 버튼7
-		page_buttons[7]->setAction(HelpPage);		// HelpPage -> 페이지 번호를 반환하는 함수임.
-		page_buttons[7]->setVisible(false);	
-		page_buttons[7]->setEnabled(false);		// 7번 버튼을 보이게 설정한다.
+		page_buttons.push_back(new TEXTBUTTON(L"뒤로가기", 0, 450, 170, 150, 50, 20)); // 버튼9
+		page_buttons[9]->setAction(HelpPage);		// HelpPage -> 페이지 번호를 반환하는 함수임.
+		page_buttons[9]->setVisible(false);
+		page_buttons[9]->setEnabled(false);
+
+		// 버튼과 라벨의 생성이 완료되면 페이지 변경 메시지를 보내 화면을 보여주기 시작한다.
+		PostMessage(hWnd, WM_page_change, wParam, lParam);
 		break;
 
 	case WM_LBUTTONDOWN : 
@@ -257,149 +285,194 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				// Page 값을 변경한다.
 				Page = t;
 
-				
+				// 페이지 변경 메시지를 호출한다.
+				PostMessage(hWnd, WM_page_change, wParam, lParam);
 
-				// 모든 버튼을 비활성화 하는 코드를 삽입
-				for (const auto& i : page_buttons) {
-					i->setEnabled(false);
-					i->setVisible(false);
-				}
-
-				if (edit1 != NULL) {
-					DestroyWindow(edit1);
-					edit1 = NULL;
-				}
-				if (edit2 != NULL) {
-					DestroyWindow(edit2);
-					edit2 = NULL;
-				}
-
-
-				// Page값 에 따라 버튼의 출력 및 동작 여부를 설정함
-				// 페이지가 변경될 때 가장 먼저 실행되는 코드들
-				// 버튼의 활성화를 할 때 쓰인다.
-				switch (Page)
-				{
-
-				case page_main:
-					// 게임 초기화면
-					page_buttons[0]->setEnabled(true);		// 게임시작 버튼 활성화
-					page_buttons[0]->setVisible(true);		// 게임시작 버튼 활성화
-					page_buttons[1]->setEnabled(true);		// 도움말 버튼 활성화
-					page_buttons[1]->setVisible(true);		// 도움말 버튼 활성화
-					break;
-
-				case page_name:
-					// 이름 입력 페이지
-					edit1 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 200, 250, 40, hWnd, (HMENU)101, NULL, NULL);
-					edit2 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 270, 250, 40, hWnd, (HMENU)102, NULL, NULL);
-					page_buttons[2]->setEnabled(true);		// 시작 버튼 활성화
-					page_buttons[2]->setVisible(true);		// 시작 버튼 활성화
-					break;
-
-				case page_signin:
-					// 계정 등록 페이지
-					page_buttons[3]->setEnabled(true);		// 시작 버튼 활성화
-					page_buttons[3]->setVisible(true);		// 시작 버튼 활성화
-					break;
-
-				case page_login:
-					// 로그인 페이지
-					page_buttons[4]->setEnabled(true);		// 등록 버튼 활성화
-					page_buttons[4]->setVisible(true);		// 등록 버튼 활성화
-					break;
-
-				case page_attack_login:
-					// 공격자 로그인 페이지
-					page_buttons[5]->setEnabled(true);		// 사용자 로그인 버튼 활성화
-					page_buttons[5]->setVisible(true);		// 사용자 로그인 버튼 활성화
-					break;
-
-				case page_result:
-					// 결과 페이지
-					page_buttons[6]->setEnabled(true);		// 공격자 로그인 버튼 활성화
-					page_buttons[6]->setVisible(true);		// 공격자 로그인 버튼 활성화
-					break;
-
-				case page_help:
-					// 도움말 페이지
-					page_buttons[7]->setEnabled(true);
-					page_buttons[7]->setVisible(true);		
-					break;
-				}
+				// 화면이 변경되었으므로 jump값을 0으로 변경
+				jump = 0;
 				break;
 			}
 		}
-		// jump를 0으로 초기화 한 후 화면 리다이랙션
-		jump = 0;
+		// 화면 리다이랙션
 		InvalidateRect(hWnd, NULL, true);
 	}
 		break;
+	// 페이지 변경 메시지
+	case WM_page_change:
+	{
+		// 모든 버튼을 비활성화
+		for (const auto& i : page_buttons) {
+			i->setEnabled(false);
+			i->setVisible(false);
+		}
 
+		// 에딧 텍스트에 대해 비활성화 상태로 만든다.
+		if (edit1 != NULL) {
+			DestroyWindow(edit1);
+			edit1 = NULL;
+		}
+		if (edit2 != NULL) {
+			DestroyWindow(edit2);
+			edit2 = NULL;
+		}
+
+		// Page값 에 따라 버튼의 출력 및 동작 여부를 설정함
+		// 페이지가 변경될 때 가장 먼저 실행되는 코드들
+		// 버튼의 활성화를 할 때 쓰인다.
+		switch (Page)
+		{
+		case page_main:
+			// 게임 초기화면
+			for (int i = 0; i <= 1; i++)
+			{
+				page_buttons[i]->setEnabled(true);
+				page_buttons[i]->setVisible(true);
+			}
+			break;
+
+		case page_name:
+			// 이름 입력 페이지
+			edit1 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 200, 250, 40, hWnd, (HMENU)101, NULL, NULL);
+			edit2 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 250, 250, 40, hWnd, (HMENU)102, NULL, NULL);
+			for (int i = 2; i <= 2; i++)
+			{
+				page_buttons[i]->setEnabled(true);
+				page_buttons[i]->setVisible(true);
+			}
+			break;
+
+		case page_signin:
+			// 계정 등록 페이지
+			edit1 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 200, 200, 40, hWnd, (HMENU)101, NULL, NULL);
+			edit2 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 250, 200, 40, hWnd, (HMENU)102, NULL, NULL);
+			for (int i = 3; i <= 4; i++)
+			{
+				page_buttons[i]->setEnabled(true);
+				page_buttons[i]->setVisible(true);
+			}
+			break;
+
+		case page_login:
+			// 로그인 페이지
+			edit1 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 390, 200, 200, 40, hWnd, (HMENU)101, NULL, NULL);
+			edit2 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 390, 250, 200, 40, hWnd, (HMENU)102, NULL, NULL);
+			for (int i = 5; i <= 6; i++)
+			{
+				page_buttons[i]->setEnabled(true);
+				page_buttons[i]->setVisible(true);
+			}
+			jump = page_signin;
+			break;
+
+		case page_attack_login:
+			// 공격자 로그인 페이지
+			edit1 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 150, 200, 200, 40, hWnd, (HMENU)101, NULL, NULL);
+			edit2 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 150, 250, 200, 40, hWnd, (HMENU)102, NULL, NULL);
+			for (int i = 7; i <= 7; i++)
+			{
+				page_buttons[i]->setEnabled(true);
+				page_buttons[i]->setVisible(true);
+			}
+			break;
+
+		case page_result:
+			// 결과 페이지
+			for (int i = 8; i <= 8; i++)
+			{
+				page_buttons[i]->setEnabled(true);
+				page_buttons[i]->setVisible(true);
+			}
+			break;
+
+		case page_help:
+			// 도움말 페이지
+			for (int i = 9; i <= 9; i++)
+			{
+				page_buttons[i]->setEnabled(true);
+				page_buttons[i]->setVisible(true);
+			}
+			break;
+		}
+	}
+		break;
 	case WM_PAINT:
 		{
 			PAINTSTRUCT ps;
 			HDC hdc = BeginPaint(hWnd, &ps);
 
-			
-			
 			// Page값 에 따라 화면을 출력한다.
 			switch (Page)
 			{
 			case page_main:
 				// 게임 초기화면
-				//아래는 게임 초기화면을 구성한 코드로 보임.
-				labels[0]->paint(hdc);
-				labels[1]->paint(hdc);
-				page_buttons[0]->paint(hdc);
-				page_buttons[1]->paint(hdc);
+				
+				for (int i = 0; i <= 1; i++)
+					labels[i]->paint(hdc);
+
+				for (int i = 0; i <= 1; i++)
+					page_buttons[i]->paint(hdc);
+
 				break;
 			case page_name:	
 				// 이름 입력 페이지
 				// 마찬가지로 이 아래에 이름 입력 페이지를 구성해보겠음.
-				labels[2]->paint(hdc);
-				labels[3]->paint(hdc);
-				page_buttons[2]->paint(hdc);	// 아까 구성한 요소들을 차례대로 페이지에 삽입해 줌.
+				
+				for (int i = 2; i <= 4; i++)
+					labels[i]->paint(hdc);
+
+				for (int i = 2; i <= 2; i++)
+					page_buttons[i]->paint(hdc);
+
 				break;
 			case page_signin:
 				// 계정 등록 페이지
-				//DestroyWindow(edit1);
-				//DestroyWindow(edit2);
-				MessageBox(hWnd, _T("계정 등록페이지"), _T("미완성"), MB_OK);
-				page_buttons[3]->paint(hdc);
+				
+				for (int i = 5; i <= 9; i++)
+					labels[i]->paint(hdc);
+
+				for (int i = 3; i <= 4; i++)
+					page_buttons[i]->paint(hdc);
+
 				break;
 			case page_login:
 				// 로그인 페이지
-				labels[4]->paint(hdc);
-				labels[5]->paint(hdc);
-				MessageBox(hWnd, _T("로그인페이지"), _T("미완성"), MB_OK);
-				page_buttons[4]->paint(hdc);
+				
+				for (int i = 10; i <= 14; i++)
+					labels[i]->paint(hdc);
+
+				for (int i = 5; i <= 6; i++)
+					page_buttons[i]->paint(hdc);
+
 				break;
 			case page_attack_login:
 				// 공격자 로그인 페이지
-				labels[6]->paint(hdc);
-				labels[7]->paint(hdc);
-				MessageBox(hWnd, _T("공격자 로그인페이지"), _T("미완성"), MB_OK);
-				page_buttons[5]->paint(hdc);
+				
+				for (int i = 15; i <= 19; i++)
+					labels[i]->paint(hdc);
+
+				for (int i = 7; i <= 7; i++)
+					page_buttons[i]->paint(hdc);
+
 				break;
 			case page_result:
 				// 결과 페이지
-				MessageBox(hWnd, _T("결과페이지"), _T("미완성"), MB_OK);
+
+				for (int i = 20; i <= 26; i++)
+					labels[i]->paint(hdc);
+
+				for (int i = 8; i <= 8; i++)
+					page_buttons[i]->paint(hdc);
+
 				break;
 			case page_help:
 				// 도움말 페이지
-				MessageBox(hWnd, _T("도움말페이지"), _T("미완성"), MB_OK);
-				page_buttons[6]->paint(hdc);
+				for (int i = 9; i <= 9; i++)
+					page_buttons[i]->paint(hdc);
 				break;
+
 			default:
 				break;
 			}
-
-			if (Page != 7)
-			{
-				page_buttons[6]->setEnabled(false);
-			}
-
 			EndPaint(hWnd, &ps);
 		}
 		break;
