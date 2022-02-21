@@ -169,8 +169,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		// 1번 버튼의 동작을 중지 시킨다.
 		//page_buttons[1]->setEnabled(false);
 		// 1번 버튼을 보이게 설정한다.
-		page_buttons[1]->setVisible(true);
-
+		
 
 		// ------------------2번 페이지에서 사용될 요소----------------------
 		// 이름 입력 페이지
@@ -179,10 +178,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		page_buttons.push_back(new TEXTBUTTON(L"시작", 0, 450, 370, 150, 50, 20)); // 버튼2
 		page_buttons[2]->setAction(NextPage);		// NextPage -> 페이지 번호를 반환하는 함수임.
-		page_buttons[2]->setVisible(true);			// 2번 버튼을 보이게 설정한다.
+		page_buttons[2]->setVisible(false);			// 2번 버튼을 보이게 설정한다.
+		page_buttons[2]->setEnabled(false);			// 2번 버튼의 활성화 설정한다
 
-		edit1 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 200, 250, 40, hWnd, (HMENU)101, NULL, NULL);
-		edit2 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 270, 250, 40, hWnd, (HMENU)102, NULL, NULL);
+		//edit1 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 200, 250, 40, hWnd, (HMENU)101, NULL, NULL);
+		//edit2 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 270, 250, 40, hWnd, (HMENU)102, NULL, NULL);
 		// 에딧은 몇 개가 필요하게 될 지 모르겠어서 배열 없이 따로 만들어봤다. 솔직히 인수 하나하나의 의미는 잘 모르겠고
 		// 시간이 너무 늦어서 급한대로 인터넷에서 에딧 생성 코드를 찾아서 이 코드에 맞게 고쳐봤다
 		// 어느 정도는 알겠는데.. 빠삭하게 알려면 맘먹고 찾아봐야 할 듯. (에딧=텍스트 상자)
@@ -192,7 +192,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		// 계정 등록 페이지
 		page_buttons.push_back(new TEXTBUTTON(L"등록", 0, 450, 370, 150, 50, 20)); // 버튼3
 		page_buttons[3]->setAction(NextPage);		// NextPage -> 페이지 번호를 반환하는 함수임.
-		page_buttons[3]->setVisible(true);			// 3번 버튼을 보이게 설정한다.
+		page_buttons[3]->setVisible(false);			// 3번 버튼을 보이게 설정한다.
+		page_buttons[3]->setEnabled(false);			// 3번 버튼의 활성화 설정한다
 
 
 		// ------------------4번 페이지에서 사용될 요소-----------------------
@@ -203,7 +204,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		page_buttons.push_back(new TEXTBUTTON(L"사용자 로그인", 0, 450, 370, 150, 50, 20)); // 버튼4
 		page_buttons[4]->setAction(NextPage);		// NextPage -> 페이지 번호를 반환하는 함수임.
-		page_buttons[4]->setVisible(true);			// 4번 버튼을 보이게 설정한다.
+		page_buttons[4]->setVisible(false);			// 4번 버튼을 보이게 설정한다.
+		page_buttons[4]->setEnabled(false);			// 4번 버튼의 활성화 설정한다
 
 
 		// ------------------5번 페이지에서 사용될 요소-----------------------
@@ -213,19 +215,30 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		page_buttons.push_back(new TEXTBUTTON(L"공격자 로그인", 0, 450, 370, 150, 50, 20)); // 버튼5
 		page_buttons[5]->setAction(NextPage);		// NextPage -> 페이지 번호를 반환하는 함수임.
-		page_buttons[5]->setVisible(true);			// 5번 버튼을 보이게 설정한다.
+		page_buttons[5]->setVisible(false);			// 5번 버튼을 보이게 설정한다.
+		page_buttons[5]->setEnabled(false);			// 5번 버튼의 활성화 설정한다
 
 
 		// ------------------6번 페이지에서 사용될 요소-----------------------
 		// 결과 페이지
-		
+		labels.push_back(new LABEL(280, 200, L"점수", 30));		// 라벨8
+		labels.push_back(new LABEL(340, 200, L":", 30));		// 라벨9
+		labels.push_back(new LABEL(400, 200, L"점수", 30));		// 라벨10
+		labels.push_back(new LABEL(220, 270, L"승", 30));		// 라벨11
+		labels.push_back(new LABEL(460, 270, L"패", 30));		// 라벨12
+		labels.push_back(new LABEL(220, 200, L"플레이어1", 30));		// 라벨6
+		labels.push_back(new LABEL(460, 270, L"플레이어2", 30));		// 라벨7
+		page_buttons.push_back(new TEXTBUTTON(L"처음으로", 0, 340, 370, 150, 50, 20)); // 버튼6
+		page_buttons[6]->setAction(JumpPage);		// JumpPage -> 페이지 번호로 이동하는 함수.
+		page_buttons[6]->setVisible(false);			// 6번 버튼을 보이게 설정한다.
+		page_buttons[6]->setEnabled(false);			// 6번 버튼의 활성화 설정한다
 
 		// ------------------7번 페이지에서 사용될 요소-----------------------
 		// 도움말 페이지
 		page_buttons.push_back(new TEXTBUTTON(L"뒤로가기", 0, 450, 170, 150, 50, 20)); // 버튼7
-		page_buttons[6]->setAction(HelpPage);		// HelpPage -> 페이지 번호를 반환하는 함수임.
-		page_buttons[6]->setVisible(true);	
-		page_buttons[6]->setEnabled(false);		// 7번 버튼을 보이게 설정한다.
+		page_buttons[7]->setAction(HelpPage);		// HelpPage -> 페이지 번호를 반환하는 함수임.
+		page_buttons[7]->setVisible(false);	
+		page_buttons[7]->setEnabled(false);		// 7번 버튼을 보이게 설정한다.
 		break;
 
 	case WM_LBUTTONDOWN : 
@@ -278,37 +291,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 				case page_name:
 					// 이름 입력 페이지
-					
-					break;
-
-				case page_signin:
-					// 계정 등록 페이지
+					edit1 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 200, 250, 40, hWnd, (HMENU)101, NULL, NULL);
+					edit2 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 270, 250, 40, hWnd, (HMENU)102, NULL, NULL);
 					page_buttons[2]->setEnabled(true);		// 시작 버튼 활성화
 					page_buttons[2]->setVisible(true);		// 시작 버튼 활성화
 					break;
 
+				case page_signin:
+					// 계정 등록 페이지
+					page_buttons[3]->setEnabled(true);		// 시작 버튼 활성화
+					page_buttons[3]->setVisible(true);		// 시작 버튼 활성화
+					break;
+
 				case page_login:
 					// 로그인 페이지
-					page_buttons[3]->setEnabled(true);		// 등록 버튼 활성화
-					page_buttons[3]->setVisible(true);		// 등록 버튼 활성화
+					page_buttons[4]->setEnabled(true);		// 등록 버튼 활성화
+					page_buttons[4]->setVisible(true);		// 등록 버튼 활성화
 					break;
 
 				case page_attack_login:
 					// 공격자 로그인 페이지
-					page_buttons[4]->setEnabled(true);		// 사용자 로그인 버튼 활성화
-					page_buttons[4]->setVisible(true);		// 사용자 로그인 버튼 활성화
+					page_buttons[5]->setEnabled(true);		// 사용자 로그인 버튼 활성화
+					page_buttons[5]->setVisible(true);		// 사용자 로그인 버튼 활성화
 					break;
 
 				case page_result:
 					// 결과 페이지
-					page_buttons[5]->setEnabled(true);		// 공격자 로그인 버튼 활성화
-					page_buttons[5]->setVisible(true);		// 공격자 로그인 버튼 활성화
+					page_buttons[6]->setEnabled(true);		// 공격자 로그인 버튼 활성화
+					page_buttons[6]->setVisible(true);		// 공격자 로그인 버튼 활성화
 					break;
 
 				case page_help:
 					// 도움말 페이지
-					page_buttons[6]->setEnabled(true);
-					page_buttons[6]->setVisible(true);		
+					page_buttons[7]->setEnabled(true);
+					page_buttons[7]->setVisible(true);		
 					break;
 				}
 				break;
