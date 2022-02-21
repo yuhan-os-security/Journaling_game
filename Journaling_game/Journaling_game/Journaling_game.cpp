@@ -139,18 +139,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static vector<TEXTBUTTON*> page_buttons;
 	
 	// 에딧(텍스트 상자)에 대한 모음이다. push_back 적용이 안되서 임시방편.
-	HWND edit1;
-	HWND edit2;
+	static HWND edit1;
+	static HWND edit2;
 	
 
 	// 점프할 페이지 번호
 	// 변수의 값을 0 이외의 값으로 설정 한 후 버튼이 눌리면 해당 페이지로 이동됨
 	static int jump = 0;
-
+	
 
 	switch (message)
 	{
 	case WM_CREATE:
+
+		
 
 		// 1번 페이지에서 사용될 요소
 		// 게임 초기화면
@@ -162,7 +164,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 													// setaction=액션리스너라고 보면 됨.
 		// 도움말 버튼 등록
 		page_buttons.push_back(new TEXTBUTTON(L"도움말", 0, 450, 370, 150, 50, 20));	// 버튼1
-		page_buttons[1]->setAction(HelpPage);		// 이 부분이 실행이 안 되는 것 같다.
+		page_buttons[1]->setAction(HelpPage);		
 		
 		// 1번 버튼의 동작을 중지 시킨다.
 		//page_buttons[1]->setEnabled(false);
@@ -179,8 +181,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		page_buttons[2]->setAction(NextPage);		// NextPage -> 페이지 번호를 반환하는 함수임.
 		page_buttons[2]->setVisible(true);			// 2번 버튼을 보이게 설정한다.
 
-		edit1 = CreateWindow(L"EDIT1", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 200, 250, 40, hWnd, NULL, NULL, NULL);
-		edit2 = CreateWindow(L"EDIT2", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 270, 250, 40, hWnd, NULL, NULL, NULL);
+		edit1 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 200, 250, 40, hWnd, (HMENU)101, NULL, NULL);
+		edit2 = CreateWindow(L"EDIT", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL, 450, 270, 250, 40, hWnd, (HMENU)102, NULL, NULL);
 		// 에딧은 몇 개가 필요하게 될 지 모르겠어서 배열 없이 따로 만들어봤다. 솔직히 인수 하나하나의 의미는 잘 모르겠고
 		// 시간이 너무 늦어서 급한대로 인터넷에서 에딧 생성 코드를 찾아서 이 코드에 맞게 고쳐봤다
 		// 어느 정도는 알겠는데.. 빠삭하게 알려면 맘먹고 찾아봐야 할 듯. (에딧=텍스트 상자)
@@ -242,7 +244,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				// Page 값을 변경한다.
 				Page = t;
 
+				
+
 				// 모든 버튼을 비활성화 하는 코드를 삽입
+				for (const auto& i : page_buttons) {
+					i->setEnabled(false);
+					i->setVisible(false);
+				}
+
+				if (edit1 != NULL) {
+					DestroyWindow(edit1);
+					edit1 = NULL;
+				}
+				if (edit2 != NULL) {
+					DestroyWindow(edit2);
+					edit2 = NULL;
+				}
 
 
 				// Page값 에 따라 버튼의 출력 및 동작 여부를 설정함
@@ -250,6 +267,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				// 버튼의 활성화를 할 때 쓰인다.
 				switch (Page)
 				{
+
 				case page_main:
 					// 게임 초기화면
 					page_buttons[0]->setEnabled(true);		// 게임시작 버튼 활성화
@@ -306,6 +324,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			PAINTSTRUCT ps;
 			HDC hdc = BeginPaint(hWnd, &ps);
+
+			
 			
 			// Page값 에 따라 화면을 출력한다.
 			switch (Page)
